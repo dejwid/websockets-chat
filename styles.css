@@ -1,0 +1,36 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: #222;
+    color: #fff;
+    font-family: sans-serif;
+}
+form {
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:20px;
+}
+input{
+    border:1px solid #555;
+    background-color: transparent;
+    width: 100%;
+    padding:10px;
+    border-radius:20px;
+    color:#fff;
+}
+.bubble{
+    border-radius: 20px;
+    background-color:#444;
+    margin:4px;
+    padding: 5px 10px;
+    display: inline-block;
+}
+.message-row.mine{
+    text-align:right;
+}
+.message-row.mine .bubble{
+    background-color: #07c;
+}

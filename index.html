@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="messages"></div>
+    <form>
+        <input type="text" placeholder="Your message...">
+    </form>
+    <script>
+        function showMessage(text,isMine = false) {
+          document.getElementById("messages").innerHTML += `
+            <div class="message-row ${isMine?'mine':'theirs'}">
+                <div class="bubble">${text}</div>
+            </div>
+          `;
+        }
+        const ws = new WebSocket('ws://localhost:8080');
+        ws.addEventListener('message', ev => {
+          ev.data.text().then(showMessage);
+        });
+        document.querySelector('form').onsubmit = ev => {
+          ev.preventDefault();
+          const input = document.querySelector('input');
+          ws.send(input.value);
+          showMessage(input.value, true);
+          input.value = '';
+        }
+    </script>
+</body>
+</html>
